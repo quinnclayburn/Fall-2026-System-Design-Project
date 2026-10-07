@@ -17,7 +17,7 @@
 | T9 | Replace template branding and placeholder copy in the existing Home, About, and navigation components with Medication Assistance Program Finder content and labels. | R1, R2, ADR-00 | — | Done |
 | T10 | Apply the colors, typography, spacing, and component rules from design-system.md throughout the existing application interface, preserving functionality. | T4, T5, T6, T8, T9 | Done |
 | T11 | Verify the interface matches design-system.md and meets its documented accessibility standards. | T10 | Done |
-| T12 | Verify the Home, Medication Collection, Medication/Program Detail, and About routes and navigation links. | R1, R2 | T9 | Not started |
+| T12 | Verify the Home, Medication Collection, Medication/Program Detail, and About routes and navigation links. | R1, R2 | T9 | Done |
 | T13 | Verify that the CSV loads and each collection card shows the expected medication/program fields. | R3–R5 | T3, T4 | Not started |
 | T14 | Verify that selecting a card opens the matching detail view with the required available program information. | R6, R7 | T6 | Not started |
 | T15 | Test brand-name, generic-name, and partial-name searches separately and confirm each returns matching medications. | R8, ADR-03 | T5 | Not started |
