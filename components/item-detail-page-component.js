@@ -53,6 +53,11 @@ export default {
           </div>
 
           <div class="mb-3">
+            <div class="small text-uppercase fw-semibold text-secondary">Conditions treated</div>
+            <div>{{ selectedItem.conditionsTreated || 'Condition information unavailable' }}</div>
+          </div>
+
+          <div class="mb-3">
             <div class="small text-uppercase fw-semibold text-secondary">Program</div>
             <div>{{ selectedItem.programName || selectedItem.manufacturer || 'Program unavailable' }}</div>
           </div>

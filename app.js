@@ -60,6 +60,7 @@ const app = Vue.createApp({
                 const manufacturer = String(row.manufacturer || '').trim();
                 const description = String(row.description || '').trim();
                 const category = String(row.category || '').trim();
+                const conditionsTreated = String(row.conditions_treated || '').trim();
                 const eligibility = String(row.eligibility || '').trim();
                 const requiredDocuments = String(row.required_documents || '').trim();
                 const applicationInstructions = String(row.application_instructions || '').trim();
@@ -75,6 +76,7 @@ const app = Vue.createApp({
                   manufacturer,
                   description,
                   category,
+                  conditionsTreated,
                   eligibility,
                   requiredDocuments,
                   applicationInstructions,
