@@ -4,6 +4,8 @@ export default {
     const itemsStore = Vue.inject('itemsStore');
     const bookmarksStore = Vue.inject('bookmarksStore');
     const route = VueRouter.useRoute();
+    const bookmarkNotice = Vue.ref('');
+    let bookmarkTimer = null;
 
     const selectedItem = Vue.computed(() => {
       return itemsStore.items.find((item) => item.id === route.params.id);
@@ -13,8 +15,20 @@ export default {
       return bookmarksStore.isBookmarked(route.params.id);
     });
 
+    const showBookmarkNotice = (message) => {
+      if (bookmarkTimer) {
+        clearTimeout(bookmarkTimer);
+      }
+
+      bookmarkNotice.value = message;
+      bookmarkTimer = setTimeout(() => {
+        bookmarkNotice.value = '';
+      }, 1200);
+    };
+
     const toggleBookmark = () => {
       bookmarksStore.toggle(route.params.id);
+      showBookmarkNotice(bookmarksStore.isBookmarked(route.params.id) ? 'Saved' : 'Unsaved');
     };
 
     return {
@@ -22,6 +36,7 @@ export default {
       bookmarksStore,
       selectedItem,
       isBookmarked,
+      bookmarkNotice,
       toggleBookmark,
     };
   },
@@ -41,7 +56,25 @@ export default {
         Item not found.
       </div>
 
-      <article v-else class="card shadow-sm border-0 overflow-hidden">
+      <article v-else class="card shadow-sm border-0 overflow-hidden position-relative">
+        <div class="position-absolute top-0 end-0 m-3">
+          <div
+            v-if="bookmarkNotice"
+            class="position-absolute top-50 end-100 me-2 translate-middle-y small text-white bg-dark rounded px-2 py-1 z-1">
+            {{ bookmarkNotice }}
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-light border d-flex align-items-center justify-content-center p-0 position-relative"
+            style="width: 2.5rem; height: 2.5rem;"
+            @click="toggleBookmark"
+            :aria-label="isBookmarked ? 'Remove bookmark' : 'Save program'"
+            :title="isBookmarked ? 'Remove bookmark' : 'Save program'">
+            <i :class="isBookmarked ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true"></i>
+          </button>
+        </div>
+
         <img
           v-if="selectedItem.imageUrl"
           :src="selectedItem.imageUrl"
@@ -54,17 +87,9 @@ export default {
         </div>
 
         <div class="card-body p-4">
-          <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
-            <div class="d-flex align-items-center gap-2">
-              <h1 class="h3 mb-0">{{ selectedItem.medicationName || selectedItem.name }}</h1>
-              <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
-            </div>
-            <button
-              type="button"
-              class="btn btn-sm btn-outline-secondary"
-              @click="toggleBookmark">
-              {{ isBookmarked ? 'Remove bookmark' : 'Save program' }}
-            </button>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <h1 class="h3 mb-0">{{ selectedItem.medicationName || selectedItem.name }}</h1>
+            <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
           </div>
 
           <div class="mb-3">

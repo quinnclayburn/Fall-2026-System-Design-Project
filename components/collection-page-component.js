@@ -93,20 +93,22 @@ export default {
       <div v-else class="row g-3">
         <div class="col-12 col-md-6 col-lg-4" v-for="item in filteredItems" :key="item.id">
           <article class="card h-100 shadow-sm border-0 medication-card position-relative">
-            <button
-              type="button"
-              class="btn btn-light border d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-2 p-0"
-              style="width: 2.5rem; height: 2.5rem;"
-              @click="toggleBookmark(item.id)"
-              :aria-label="isBookmarked(item.id) ? 'Remove bookmark' : 'Save program'"
-              :title="isBookmarked(item.id) ? 'Remove bookmark' : 'Save program'">
-              <i :class="isBookmarked(item.id) ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true"></i>
-            </button>
+            <div class="position-absolute top-0 end-0 m-2">
+              <div
+                v-if="bookmarkNotice && bookmarkNotice.itemId === item.id"
+                class="position-absolute top-50 end-100 me-2 translate-middle-y small text-white bg-dark rounded px-2 py-1">
+                {{ bookmarkNotice.message }}
+              </div>
 
-            <div
-              v-if="bookmarkNotice && bookmarkNotice.itemId === item.id"
-              class="position-absolute top-0 start-0 m-2 small text-white bg-dark rounded px-2 py-1">
-              {{ bookmarkNotice.message }}
+              <button
+                type="button"
+                class="btn btn-light border d-flex align-items-center justify-content-center p-0"
+                style="width: 2.5rem; height: 2.5rem;"
+                @click="toggleBookmark(item.id)"
+                :aria-label="isBookmarked(item.id) ? 'Remove bookmark' : 'Save program'"
+                :title="isBookmarked(item.id) ? 'Remove bookmark' : 'Save program'">
+                <i :class="isBookmarked(item.id) ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true"></i>
+              </button>
             </div>
 
             <img
