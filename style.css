@@ -20,6 +20,10 @@
   background: #FFFFFF;
 }
 
+.search-bar {
+  max-width: 420px;
+}
+
 .text-secondary {
   color: #245F9E !important;
 }
