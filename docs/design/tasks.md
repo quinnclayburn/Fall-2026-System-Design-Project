@@ -8,7 +8,7 @@
 |----|------|--------------------------|------------|--------|
 | T1 | Select 10 real medications from a sourced list of commonly used, higher-cost medications (for example, Eliquis or Januvia) and verify their medication names and generic names. | R3, R8, ADR-01 | — | Done |
 | T2 | Update `items-template.csv` with the specification's medication/program columns and sample records for the 10 selected medications, using simulated assistance-program details. | R3–R7, ADR-01 | T1 | Done |
-| T3 | Update the existing CSV mapping in `app.js` to expose the medication and assistance-program fields while preserving the current loading and error states. | R3, R11, ADR-01 | T2 | Not started |
+| T3 | Update the existing CSV mapping in `app.js` to expose the medication and assistance-program fields while preserving the current loading and error states. | R3, R11, ADR-01 | T2 | Done |
 | T4 | Adapt the existing collection cards to show the medication name, program or manufacturer, short description, and image when available; mark simulated program details as simulated. | R4, R5, R7, ADR-00, ADR-01 | T3 | Not started |
 | T5 | Add collection search that matches brand names, generic names, and partial medication names. | R8, ADR-03 | T3, T4 | Not started |
 | T6 | Adapt the existing detail component to show the medication and available program, eligibility, required documentation, application, website, and contact information; mark simulated program details as simulated. | R6, R7, ADR-00, ADR-01 | T3, T4 | Not started |

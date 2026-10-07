@@ -52,14 +52,37 @@ const app = Vue.createApp({
               itemsStore.error = 'There was a problem reading the CSV data.';
               itemsStore.items = [];
             } else {
-              itemsStore.items = data.map((row) => ({
-                id: String(row.id || '').trim(),
-                name: String(row.name || '').trim(),
-                description: String(row.description || '').trim(),
-                category: String(row.category || '').trim(),
-                imageUrl: String(row.image_url || '').trim(),
-                location: String(row.location || '').trim(),
-              }));
+              itemsStore.items = data.map((row) => {
+                const id = String(row.id || '').trim();
+                const medicationName = String(row.medication_name || row.name || '').trim();
+                const genericName = String(row.generic_name || '').trim();
+                const programName = String(row.program_name || row.program || '').trim();
+                const manufacturer = String(row.manufacturer || '').trim();
+                const description = String(row.description || '').trim();
+                const category = String(row.category || '').trim();
+                const eligibility = String(row.eligibility || '').trim();
+                const requiredDocuments = String(row.required_documents || '').trim();
+                const applicationInstructions = String(row.application_instructions || '').trim();
+                const programUrl = String(row.program_url || '').trim();
+                const imageUrl = String(row.image_url || '').trim();
+
+                return {
+                  id,
+                  name: medicationName,
+                  medicationName,
+                  genericName,
+                  programName,
+                  manufacturer,
+                  description,
+                  category,
+                  eligibility,
+                  requiredDocuments,
+                  applicationInstructions,
+                  programUrl,
+                  imageUrl,
+                  location: programName || manufacturer || '',
+                };
+              });
               itemsStore.error = '';
             }
             itemsStore.isLoading = false;
