@@ -43,13 +43,33 @@ export default {
 
         <div class="card-body p-4">
           <div class="d-flex align-items-center gap-2 mb-2">
-            <h1 class="h3 mb-0">{{ selectedItem.name }}</h1>
+            <h1 class="h3 mb-0">{{ selectedItem.medicationName || selectedItem.name }}</h1>
             <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
           </div>
 
+          <div class="mb-3">
+            <div class="small text-uppercase fw-semibold text-secondary">Generic name</div>
+            <div>{{ selectedItem.genericName || 'Generic name unavailable' }}</div>
+          </div>
+
+          <div class="mb-3">
+            <div class="small text-uppercase fw-semibold text-secondary">Program</div>
+            <div>{{ selectedItem.programName || selectedItem.manufacturer || 'Program unavailable' }}</div>
+          </div>
+
+          <div class="mb-3">
+            <span class="badge rounded-pill bg-light text-secondary border">Simulated program details</span>
+          </div>
+
           <p class="lead mb-3">{{ selectedItem.description || 'No description available.' }}</p>
-          <p class="mb-0"><strong>Location:</strong> {{ selectedItem.location || 'N/A' }}</p>
-          <p class="text-muted mt-2 mb-0"><strong>Item ID:</strong> {{ selectedItem.id }}</p>
+          <p class="mb-0"><strong>Manufacturer:</strong> {{ selectedItem.manufacturer || 'N/A' }}</p>
+          <p class="mb-0 mt-2"><strong>Eligibility:</strong> {{ selectedItem.eligibility || 'N/A' }}</p>
+          <p class="mb-0 mt-2"><strong>Required documents:</strong> {{ selectedItem.requiredDocuments || 'N/A' }}</p>
+          <p class="mb-0 mt-2"><strong>Application instructions:</strong> {{ selectedItem.applicationInstructions || 'N/A' }}</p>
+          <p class="mb-0 mt-2"><strong>Program website:</strong>
+            <a v-if="selectedItem.programUrl" :href="selectedItem.programUrl" target="_blank" rel="noopener noreferrer">{{ selectedItem.programUrl }}</a>
+            <span v-else>N/A</span>
+          </p>
         </div>
       </article>
     </section>

@@ -13,3 +13,14 @@
 .item-detail-image {
   max-height: 320px;
 }
+
+.medication-card {
+  border: 1px solid #CFDBE8;
+  border-radius: 12px;
+  background: #FFFFFF;
+}
+
+.text-secondary {
+  color: #245F9E !important;
+}
+
