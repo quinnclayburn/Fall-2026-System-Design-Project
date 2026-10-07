@@ -14,6 +14,9 @@ export default {
         <router-link class="btn btn-outline-primary btn-sm d-flex align-items-center" to="/items">
           <i class="bi bi-card-list me-1"></i>Medications
         </router-link>
+        <router-link class="btn btn-outline-primary btn-sm d-flex align-items-center" to="/saved">
+          <i class="bi bi-star-fill me-1"></i>Saved
+        </router-link>
         <router-link class="btn btn-outline-primary btn-sm" to="/about">
           <i class="bi bi-info-circle me-1"></i>About
         </router-link>

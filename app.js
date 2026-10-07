@@ -2,6 +2,7 @@ import LandingPageComponent from './components/landing-page-component.js';
 import AboutPageComponent from './components/about-page-component.js';
 import NavbarComponent from './components/navbar-component.js';
 import CollectionPageComponent from './components/collection-page-component.js';
+import SavedPageComponent from './components/saved-page-component.js';
 import ItemDetailPageComponent from './components/item-detail-page-component.js';
 
 const routes = [
@@ -16,6 +17,10 @@ const routes = [
   {
     path: '/items',
     component: CollectionPageComponent,
+  },
+  {
+    path: '/saved',
+    component: SavedPageComponent,
   },
   {
     path: '/items/:id',
