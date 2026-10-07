@@ -22,7 +22,7 @@
 | T14 | Verify that selecting a card opens the matching detail view with the required available program information. | R6, R7 | T6 | Done |
 | T15 | Test brand-name, generic-name, and partial-name searches separately and confirm each returns matching medications. | R8, ADR-03 | T5 | Done |
 | T16 | Verify bookmarks are saved locally, remain saved after a page reload, and are visibly identified in the collection and detail views. | R9, R10, ADR-02 | T7, T8 | Done |
-| T17 | Verify that unavailable or unreadable CSV data produces a clear error message instead of an empty page. | R11 | T3 | Not started |
+| T17 | Verify that unavailable or unreadable CSV data produces a clear error message instead of an empty page. | R11 | T3 | Done |
 | T18 | Publish the static app with GitHub Pages and verify the deployed routes and CSV loading. | ADR-01 | T10–T15 | Not started |
 
 **Status values:** Not started · In progress · Done · Blocked
