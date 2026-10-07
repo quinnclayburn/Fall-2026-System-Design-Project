@@ -28,7 +28,7 @@ export default {
 
     const toggleBookmark = () => {
       bookmarksStore.toggle(route.params.id);
-      showBookmarkNotice(bookmarksStore.isBookmarked(route.params.id) ? 'Saved' : 'Unsaved');
+      showBookmarkNotice(bookmarksStore.isBookmarked(route.params.id) ? 'Saved' : 'Removed');
     };
 
     return {
@@ -57,21 +57,27 @@ export default {
       </div>
 
       <article v-else class="card shadow-sm border-0 overflow-hidden position-relative">
-        <div class="position-absolute top-0 end-0 m-3">
+        <div class="position-absolute top-0 end-0 m-3 d-flex align-items-center gap-2">
           <div
             v-if="bookmarkNotice"
-            class="position-absolute top-50 end-100 me-2 translate-middle-y small text-white bg-dark rounded px-2 py-1 z-1">
+            class="small text-white bg-dark rounded px-2 py-1 z-1">
             {{ bookmarkNotice }}
           </div>
 
           <button
             type="button"
-            class="btn btn-light border d-flex align-items-center justify-content-center p-0 position-relative"
+            class="btn btn-light border d-flex flex-column align-items-center justify-content-center p-0"
             style="width: 2.5rem; height: 2.5rem;"
             @click="toggleBookmark"
             :aria-label="isBookmarked ? 'Remove bookmark' : 'Save program'"
             :title="isBookmarked ? 'Remove bookmark' : 'Save program'">
-            <i :class="isBookmarked ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true"></i>
+            <i :class="isBookmarked ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true" style="font-size: 0.9rem;"></i>
+            <span
+              v-if="isBookmarked"
+              class="text-dark"
+              style="font-size: 0.52rem; line-height: 1; letter-spacing: -0.02em; max-width: 2.6rem; text-align: center; white-space: nowrap;">
+              Saved
+            </span>
           </button>
         </div>
 

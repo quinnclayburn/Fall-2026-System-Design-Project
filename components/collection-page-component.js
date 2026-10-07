@@ -41,7 +41,7 @@ export default {
     const toggleBookmark = (itemId) => {
       bookmarksStore.toggle(itemId);
       const isSaved = bookmarksStore.isBookmarked(itemId);
-      showBookmarkNotice(itemId, isSaved ? 'Saved' : 'Unsaved');
+      showBookmarkNotice(itemId, isSaved ? 'Saved' : 'Removed');
     };
 
     const isBookmarked = (itemId) => {
@@ -93,21 +93,27 @@ export default {
       <div v-else class="row g-3">
         <div class="col-12 col-md-6 col-lg-4" v-for="item in filteredItems" :key="item.id">
           <article class="card h-100 shadow-sm border-0 medication-card position-relative">
-            <div class="position-absolute top-0 end-0 m-2">
+            <div class="position-absolute top-0 end-0 m-2 d-flex align-items-center gap-2">
               <div
                 v-if="bookmarkNotice && bookmarkNotice.itemId === item.id"
-                class="position-absolute top-50 end-100 me-2 translate-middle-y small text-white bg-dark rounded px-2 py-1">
+                class="small text-white bg-dark rounded px-2 py-1">
                 {{ bookmarkNotice.message }}
               </div>
 
               <button
                 type="button"
-                class="btn btn-light border d-flex align-items-center justify-content-center p-0"
+                class="btn btn-light border d-flex flex-column align-items-center justify-content-center p-0"
                 style="width: 2.5rem; height: 2.5rem;"
                 @click="toggleBookmark(item.id)"
                 :aria-label="isBookmarked(item.id) ? 'Remove bookmark' : 'Save program'"
                 :title="isBookmarked(item.id) ? 'Remove bookmark' : 'Save program'">
-                <i :class="isBookmarked(item.id) ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true"></i>
+                <i :class="isBookmarked(item.id) ? 'bi bi-star-fill text-warning' : 'bi bi-star text-muted'" aria-hidden="true" style="font-size: 0.9rem;"></i>
+                <span
+                  v-if="isBookmarked(item.id)"
+                  class="text-dark"
+                  style="font-size: 0.52rem; line-height: 1; letter-spacing: -0.02em; max-width: 2.6rem; text-align: center; white-space: nowrap;">
+                  Saved
+                </span>
               </button>
             </div>
 
