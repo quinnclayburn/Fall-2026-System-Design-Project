@@ -28,6 +28,39 @@ const router = VueRouter.createRouter({
   routes,
 });
 
+const BOOKMARK_STORAGE_KEY = 'medication-program-bookmarks';
+
+const readStoredBookmarks = () => {
+  try {
+    const stored = JSON.parse(localStorage.getItem(BOOKMARK_STORAGE_KEY) || '[]');
+    return Array.isArray(stored) ? stored.map(String) : [];
+  } catch (error) {
+    return [];
+  }
+};
+
+const bookmarksStore = Vue.reactive({
+  ids: readStoredBookmarks(),
+  isBookmarked(id) {
+    return this.ids.includes(String(id));
+  },
+  toggle(id) {
+    const normalizedId = String(id);
+
+    if (this.ids.includes(normalizedId)) {
+      this.ids = this.ids.filter((bookmarkId) => bookmarkId !== normalizedId);
+    } else {
+      this.ids = [...this.ids, normalizedId];
+    }
+
+    try {
+      localStorage.setItem(BOOKMARK_STORAGE_KEY, JSON.stringify(this.ids));
+    } catch (error) {
+      // Ignore storage failures and keep the in-memory state working.
+    }
+  },
+});
+
 const app = Vue.createApp({
   setup() {
     const itemsStore = Vue.reactive({
@@ -103,6 +136,7 @@ const app = Vue.createApp({
       });
 
     Vue.provide('itemsStore', itemsStore);
+    Vue.provide('bookmarksStore', bookmarksStore);
 
     return {};
   },

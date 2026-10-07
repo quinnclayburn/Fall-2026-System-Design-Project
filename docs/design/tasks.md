@@ -12,7 +12,7 @@
 | T4 | Adapt the existing collection cards to show the medication name, program or manufacturer, short description, and image when available; mark simulated program details as simulated. | R4, R5, R7, ADR-00, ADR-01 | T3 | Not started |
 | T5 | Add collection search that matches brand names, generic names, and partial medication names. | R8, ADR-03 | T3, T4 | Done |
 | T6 | Adapt the existing detail component to show the medication and available program, eligibility, required documentation, application, website, and contact information; mark simulated program details as simulated. | R6, R7, ADR-00, ADR-01 | T3, T4 | Done |
-| T7 | Add a bookmark action that saves and restores program IDs using browser `localStorage`. | R9, ADR-02 | T3, T6 | Not started |
+| T7 | Add a bookmark action that saves and restores program IDs using browser `localStorage`. | R9, ADR-02 | T3, T6 | Done |
 | T8 | Show a clear saved state for bookmarked programs in the collection and detail views. | R10, ADR-02 | T4, T6, T7 | Not started |
 | T9 | Replace template branding and placeholder copy in the existing Home, About, and navigation components with Medication Assistance Program Finder content and labels. | R1, R2, ADR-00 | — | Not started |
 | T10 | Apply the colors, typography, spacing, and component rules from design-system.md throughout the existing application interface, preserving functionality. | T4, T5, T6, T8, T9 | Not Started |

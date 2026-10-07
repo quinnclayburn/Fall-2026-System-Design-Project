@@ -2,15 +2,27 @@ export default {
   name: 'item-detail-page-component',
   setup() {
     const itemsStore = Vue.inject('itemsStore');
+    const bookmarksStore = Vue.inject('bookmarksStore');
     const route = VueRouter.useRoute();
 
     const selectedItem = Vue.computed(() => {
       return itemsStore.items.find((item) => item.id === route.params.id);
     });
 
+    const isBookmarked = Vue.computed(() => {
+      return bookmarksStore.isBookmarked(route.params.id);
+    });
+
+    const toggleBookmark = () => {
+      bookmarksStore.toggle(route.params.id);
+    };
+
     return {
       itemsStore,
+      bookmarksStore,
       selectedItem,
+      isBookmarked,
+      toggleBookmark,
     };
   },
   template: /* html */ `
@@ -42,9 +54,17 @@ export default {
         </div>
 
         <div class="card-body p-4">
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <h1 class="h3 mb-0">{{ selectedItem.medicationName || selectedItem.name }}</h1>
-            <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
+          <div class="d-flex align-items-center justify-content-between gap-2 mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <h1 class="h3 mb-0">{{ selectedItem.medicationName || selectedItem.name }}</h1>
+              <span class="badge text-bg-primary">{{ selectedItem.category || 'General' }}</span>
+            </div>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+              @click="toggleBookmark">
+              {{ isBookmarked ? 'Remove bookmark' : 'Save program' }}
+            </button>
           </div>
 
           <div class="mb-3">
