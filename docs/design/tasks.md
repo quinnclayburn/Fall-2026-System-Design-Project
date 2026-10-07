@@ -19,7 +19,7 @@
 | T11 | Verify the interface matches design-system.md and meets its documented accessibility standards. | T10 | Done |
 | T12 | Verify the Home, Medication Collection, Medication/Program Detail, and About routes and navigation links. | R1, R2 | T9 | Done |
 | T13 | Verify that the CSV loads and each collection card shows the expected medication/program fields. | R3–R5 | T3, T4 | Done |
-| T14 | Verify that selecting a card opens the matching detail view with the required available program information. | R6, R7 | T6 | Not started |
+| T14 | Verify that selecting a card opens the matching detail view with the required available program information. | R6, R7 | T6 | Done |
 | T15 | Test brand-name, generic-name, and partial-name searches separately and confirm each returns matching medications. | R8, ADR-03 | T5 | Not started |
 | T16 | Verify bookmarks are saved locally, remain saved after a page reload, and are visibly identified in the collection and detail views. | R9, R10, ADR-02 | T7, T8 | Not started |
 | T17 | Verify that unavailable or unreadable CSV data produces a clear error message instead of an empty page. | R11 | T3 | Not started |
